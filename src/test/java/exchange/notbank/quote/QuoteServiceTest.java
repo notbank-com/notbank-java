@@ -16,7 +16,7 @@ import exchange.notbank.quote.paramBuilders.CreateDirectQuoteParamBuilder;
 import exchange.notbank.quote.paramBuilders.CreateInverseQuoteParamBuilder;
 import exchange.notbank.quote.paramBuilders.ExecuteQuoteParamBuilder;
 import exchange.notbank.quote.paramBuilders.GetQuoteParamBuilder;
-import exchange.notbank.quote.paramBuilders.GetQuotesParamBuilders;
+import exchange.notbank.quote.paramBuilders.GetQuotesParamBuilder;
 
 public class QuoteServiceTest {
   private static NotbankClient client;
@@ -31,7 +31,7 @@ public class QuoteServiceTest {
 
   @Test
   public void getQuotes() {
-    var futureResponse = client.getQuoteService().getQuotes(new GetQuotesParamBuilders(QuoteMode.DIRECT));
+    var futureResponse = client.getQuoteService().getQuotes(new GetQuotesParamBuilder().mode(QuoteMode.DIRECT));
     TestHelper.checkNoError(futureResponse);
   }
 

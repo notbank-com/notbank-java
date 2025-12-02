@@ -15,7 +15,7 @@ import exchange.notbank.quote.paramBuilders.CreateDirectQuoteParamBuilder;
 import exchange.notbank.quote.paramBuilders.CreateInverseQuoteParamBuilder;
 import exchange.notbank.quote.paramBuilders.ExecuteQuoteParamBuilder;
 import exchange.notbank.quote.paramBuilders.GetQuoteParamBuilder;
-import exchange.notbank.quote.paramBuilders.GetQuotesParamBuilders;
+import exchange.notbank.quote.paramBuilders.GetQuotesParamBuilder;
 import exchange.notbank.quote.responses.Quote;
 import io.vavr.control.Either;
 
@@ -46,7 +46,7 @@ public class QuoteService {
   /**
    * https://apidoc.notbank.exchange/?http#getquotes
    */
-  public CompletableFuture<List<Quote>> getQuotes(GetQuotesParamBuilders paramBuilder) {
+  public CompletableFuture<List<Quote>> getQuotes(GetQuotesParamBuilder paramBuilder) {
     return requestGet(Endpoints.QUOTES, paramBuilder, responseAdapter::toQuoteList);
   }
 

@@ -20,7 +20,7 @@ public class QuoteServiceResponseAdapter {
   private final JsonAdapter<IdResponse> idResponseAdapter;
 
   public QuoteServiceResponseAdapter(Moshi moshi) {
-    this.errorHandler = ErrorHandler.Factory.createApErrorHandler(moshi);
+    this.errorHandler = ErrorHandler.Factory.createNbErrorHandler(moshi);
     this.quoteAdapter = moshi.adapter(Quote.class);
     ParameterizedType QuoteListType = Types.newParameterizedType(List.class, Quote.class);
     this.quoteListAdapter = moshi.adapter(QuoteListType);
