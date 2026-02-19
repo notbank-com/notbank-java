@@ -31,6 +31,8 @@ import exchange.notbank.quote.QuoteService;
 import exchange.notbank.quote.QuoteServiceResponseAdapter;
 import exchange.notbank.report.ReportService;
 import exchange.notbank.report.ReportServiceResponseAdapter;
+import exchange.notbank.subaccount.SubAccountResponseAdapter;
+import exchange.notbank.subaccount.SubAccountService;
 import exchange.notbank.subscription.SubscriptionResponseAdapter;
 import exchange.notbank.subscription.SubscriptionService;
 import exchange.notbank.system.SystemService;
@@ -169,6 +171,9 @@ public class NotbankClientFactory {
     var reportService = new ReportService(
         () -> notbankConnectionInterceptor.apply(notbankConnection),
         new ReportServiceResponseAdapter(moshi));
+    var subaccountService = new SubAccountService(
+        () -> notbankConnectionInterceptor.apply(notbankConnection),
+        new SubAccountResponseAdapter(moshi));
     return new NotbankClient(
         () -> notbankConnection,
         accountService,
@@ -181,6 +186,8 @@ public class NotbankClientFactory {
         userService,
         walletService,
         quoteService,
-        reportService);
+        reportService,
+        subaccountService
+    );
   }
 }
