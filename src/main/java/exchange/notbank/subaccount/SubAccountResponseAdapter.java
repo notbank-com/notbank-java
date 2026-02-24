@@ -20,9 +20,8 @@ public class SubAccountResponseAdapter {
         this.errorHandler = ErrorHandler.Factory.createApErrorHandler(moshi);
         this.subaccountAdapter = moshi.adapter(SubAccountInfo.class);
         ParameterizedType QuoteListType = Types.newParameterizedType(
-            List.class,
-            SubAccountInfo.class
-        );
+                List.class,
+                SubAccountInfo.class);
         this.subaccountListAdapter = moshi.adapter(QuoteListType);
     }
 
@@ -31,9 +30,8 @@ public class SubAccountResponseAdapter {
     }
 
     private <T> Either<NotbankException, T> handle(
-        String jsonString,
-        JsonAdapter<T> jsonAdapter
-    ) {
+            String jsonString,
+            JsonAdapter<T> jsonAdapter) {
         return errorHandler.handleAndThen(jsonAdapter).apply(jsonString);
     }
 
@@ -42,8 +40,7 @@ public class SubAccountResponseAdapter {
     }
 
     public Either<NotbankException, List<SubAccountInfo>> toSubAccountList(
-        String jsonStr
-    ) {
+            String jsonStr) {
         return handle(jsonStr, subaccountListAdapter);
     }
 }

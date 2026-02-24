@@ -16,20 +16,7 @@ public class CreateSubAccountParamBuilder implements ParamBuilder {
     public CreateSubAccountParamBuilder(String alias) {
         this.httpConfiguration = HttpConfiguration.empty();
         this.params = new HashMap<>();
-        try {
-            String REGEX = "^[a-zA-Z0-9]*$";
-            if (!alias.matches(REGEX) || alias.length() == 0 || alias.length() > 32) {
-                throw new NotbankException(
-                    NotbankException.ErrorType.CONFIGURATION_ERROR,
-                    "Alias must be at least 1 character in length, 32 max and Alphanumeric",
-                    Optional.<Integer>empty(),
-                    Optional.<String>empty()
-                );
-            }
-            this.params.put("alias", alias);
-        } catch (Exception e) {
-            System.err.println("Error creating subaccount: " + e.getMessage()); // Log the error
-        }
+        this.params.put("alias", alias);
     }
 
     public CreateSubAccountParamBuilder userId(UUID userId) {
@@ -46,8 +33,7 @@ public class CreateSubAccountParamBuilder implements ParamBuilder {
     }
 
     public CreateSubAccountParamBuilder setHttpConfiguration(
-        HttpConfiguration httpConfiguration
-    ) {
+            HttpConfiguration httpConfiguration) {
         this.httpConfiguration = httpConfiguration;
         return this;
     }

@@ -31,15 +31,14 @@ public class SubAccountServiceTest {
   @Test
   public void createSubAccount() {
     var futureResponse = client.getSubaccountService().createSubaccount(new CreateSubAccountParamBuilder(
-        "test_account_java"
-    ));
+        "test_account_java"));
     TestHelper.checkNoError(futureResponse);
   }
+
   @Test
   public void createSubAccountFailure() {
     var futureResponse = client.getSubaccountService().createSubaccount(new CreateSubAccountParamBuilder(
-        ""
-    ));
+        ""));
     TestHelper.checkNoError(futureResponse);
   }
 
