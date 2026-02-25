@@ -15,6 +15,7 @@ public class GetSubAccountsParamBuilder implements ParamBuilder {
     this.httpConfiguration = HttpConfiguration.empty();
     this.params = new HashMap<>();
     this.params.put("page_size", 10);
+    this.params.put("page", 1);
   }
 
   public GetSubAccountsParamBuilder userId(UUID userId) {

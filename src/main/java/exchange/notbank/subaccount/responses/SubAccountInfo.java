@@ -1,4 +1,5 @@
 package exchange.notbank.subaccount.responses;
+
 import com.squareup.moshi.Json;
 
 public class SubAccountInfo {

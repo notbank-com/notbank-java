@@ -187,7 +187,6 @@ public class NotbankClientFactory {
         walletService,
         quoteService,
         reportService,
-        subaccountService
-    );
+        subaccountService);
   }
 }

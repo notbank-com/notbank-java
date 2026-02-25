@@ -39,8 +39,7 @@ public class NotbankClient {
       FeeService feeService, InstrumentService instrumentService, ProductService productService,
       SubscriptionService subscriptionService, SystemService systemService, TradingService tradingService,
       UserService userService, WalletService walletService, QuoteService quoteService, ReportService reportService,
-      SubAccountService subAccountService
-    ) {
+      SubAccountService subAccountService) {
     this.connectionSupplier = connectionSupplier;
     this.accountService = accountService;
     this.feeService = feeService;
@@ -125,7 +124,7 @@ public class NotbankClient {
     return reportService;
   }
 
-  public SubAccountService getSubaccountService(){
-      return subaccountService;
+  public SubAccountService getSubaccountService() {
+    return subaccountService;
   }
 }
