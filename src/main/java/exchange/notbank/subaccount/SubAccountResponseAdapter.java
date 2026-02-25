@@ -25,8 +25,10 @@ public class SubAccountResponseAdapter {
         return errorHandler.toNone(jsonStr);
     }
 
-    private <T> Either<NotbankException, T> handle(String jsonString, JsonAdapter<T> jsonAdapter) {
-      return errorHandler.handleAndThen(jsonAdapter).apply(jsonString);
+    private <T> Either<NotbankException, T> handle(
+            String jsonString,
+            JsonAdapter<T> jsonAdapter) {
+        return errorHandler.handleAndThen(jsonAdapter).apply(jsonString);
     }
 
     public Either<NotbankException, SubAccountInfo> toSubAccount(String jsonStr) {
