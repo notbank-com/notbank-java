@@ -1,7 +1,6 @@
 package exchange.notbank.wallet.responses;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 import com.squareup.moshi.Json;
 
