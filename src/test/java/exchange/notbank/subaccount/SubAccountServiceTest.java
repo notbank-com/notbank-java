@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import exchange.notbank.CredentialsLoader.UserCredentials;
+import exchange.notbank.core.NotbankException;
 import exchange.notbank.NotbankClient;
 import exchange.notbank.TestHelper;
 import exchange.notbank.subaccount.paramBuilders.CreateSubAccountParamBuilder;
@@ -17,7 +18,7 @@ public class SubAccountServiceTest {
 
   @BeforeAll
   public static void beforeAll() throws InterruptedException, ExecutionException {
-    client = NotbankClient.Factory.createRestClient(TestHelper.HOST);
+    client = TestHelper.newRestClient();
     credentials = TestHelper.getUserCredentials();
     client.authenticate(credentials.userId, credentials.apiPublicKey, credentials.apiSecretKey).get();
   }
@@ -31,7 +32,7 @@ public class SubAccountServiceTest {
   @Test
   public void createSubAccount() {
     var futureResponse = client.getSubaccountService().createSubaccount(new CreateSubAccountParamBuilder(
-        "test_account_java"));
+        "testaccountjava"));
     TestHelper.checkNoError(futureResponse);
   }
 
@@ -39,7 +40,7 @@ public class SubAccountServiceTest {
   public void createSubAccountFailure() {
     var futureResponse = client.getSubaccountService().createSubaccount(new CreateSubAccountParamBuilder(
         ""));
-    TestHelper.checkNoError(futureResponse);
+    TestHelper.checkRightOrErrorType(futureResponse, NotbankException.ErrorType.RESPONSE_ERROR);
   }
 
 }

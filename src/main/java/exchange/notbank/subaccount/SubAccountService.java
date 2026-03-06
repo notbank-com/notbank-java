@@ -1,12 +1,11 @@
 package exchange.notbank.subaccount;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 import java.util.function.Function;
 
 import exchange.notbank.subaccount.constants.Endpoints;
-import exchange.notbank.subaccount.responses.SubAccountInfo;
+import exchange.notbank.subaccount.responses.SubAccountList;
 import exchange.notbank.subaccount.paramBuilders.CreateSubAccountParamBuilder;
 import exchange.notbank.subaccount.paramBuilders.GetSubAccountsParamBuilder;
 import exchange.notbank.core.NotbankConnection;
@@ -43,7 +42,7 @@ public class SubAccountService {
   /**
    * https://apidoc.notbank.exchange/?http#getsubaccounts
    */
-  public CompletableFuture<List<SubAccountInfo>> getSubaccounts(GetSubAccountsParamBuilder paramBuilder) {
+  public CompletableFuture<SubAccountList> getSubaccounts(GetSubAccountsParamBuilder paramBuilder) {
     return requestGet(Endpoints.GET_SUBACCOUNTS, paramBuilder, responseAdapter::toSubAccountList);
   }
 

@@ -2,6 +2,8 @@ package exchange.notbank.core;
 
 import java.util.Optional;
 
+import exchange.notbank.core.responses.AuthErrorResponse;
+import exchange.notbank.core.responses.NbErrorResponse;
 import exchange.notbank.core.responses.NbResponse;
 import exchange.notbank.core.responses.StandardResponse;
 
@@ -65,6 +67,22 @@ public class NotbankException extends Exception {
       return new NotbankException(
           ErrorType.RESPONSE_ERROR,
           Optional.ofNullable(nbResponse.detail).orElse("<no message>"),
+          Optional.empty(),
+          Optional.empty());
+    }
+
+    public static NotbankException create(AuthErrorResponse nbResponse) {
+      return new NotbankException(
+          ErrorType.RESPONSE_ERROR,
+          Optional.ofNullable(nbResponse.detail).orElse("<no message>"),
+          Optional.empty(),
+          Optional.empty());
+    }
+
+    public static NotbankException create(NbErrorResponse nbErrorResponse) {
+      return new NotbankException(
+          ErrorType.RESPONSE_ERROR,
+          Optional.ofNullable(nbErrorResponse.message).orElse("<no message>"),
           Optional.empty(),
           Optional.empty());
     }

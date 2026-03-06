@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import com.squareup.moshi.Moshi;
 
+import exchange.notbank.core.responses.AuthErrorResponse;
+import exchange.notbank.core.responses.NbErrorResponse;
 import exchange.notbank.core.responses.NbResponse;
 
 public class StandardNbResponseHandlerTest {
@@ -16,7 +18,11 @@ public class StandardNbResponseHandlerTest {
   @BeforeAll
   public static void beforeAll() {
     var moshi = new Moshi.Builder().build();
-    handler = new StandardNbResponseHandler(moshi.adapter(NbResponse.class));
+    handler = new StandardNbResponseHandler(
+        moshi.adapter(NbResponse.class),
+        moshi.adapter(AuthErrorResponse.class),
+        moshi.adapter(NbErrorResponse.class)
+    );
   }
 
   @Test

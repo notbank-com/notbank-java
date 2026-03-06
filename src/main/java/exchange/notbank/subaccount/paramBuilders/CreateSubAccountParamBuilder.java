@@ -1,11 +1,9 @@
 package exchange.notbank.subaccount.paramBuilders;
 
 import exchange.notbank.core.HttpConfiguration;
-import exchange.notbank.core.NotbankException;
 import exchange.notbank.core.ParamBuilder;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 public class CreateSubAccountParamBuilder implements ParamBuilder {

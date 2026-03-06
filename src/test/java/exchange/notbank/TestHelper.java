@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 
 import exchange.notbank.CredentialsLoader.UserCredentials;
 import exchange.notbank.core.CompletableFutureAdapter;
-
+import exchange.notbank.core.NotbankException.ErrorType;
 import io.vavr.control.Either;
 
 public class TestHelper {
@@ -35,6 +35,13 @@ public class TestHelper {
     var response = CompletableFutureAdapter.getToEither(futureResponse);
     if (response.isLeft()) {
       assertEquals(response.getLeft().code.get(), code, () -> response.getLeft().toString());
+    }
+  }
+
+  public static <T> void checkRightOrErrorType(CompletableFuture<T> futureResponse, ErrorType code) {
+    var response = CompletableFutureAdapter.getToEither(futureResponse);
+    if (response.isLeft()) {
+      assertEquals(response.getLeft().errorType, code);
     }
   }
 
@@ -64,6 +71,7 @@ public class TestHelper {
         (request, jsonBody) -> {
           System.out.println("*connection request*");
           System.out.println("uri: " + request.uri());
+          System.out.println("headers:" + request.headers());
           System.out.println("body: " + jsonBody);
         },
         response -> {
