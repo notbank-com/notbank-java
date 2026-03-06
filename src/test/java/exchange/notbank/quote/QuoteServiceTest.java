@@ -16,7 +16,7 @@ import exchange.notbank.quote.paramBuilders.CreateDirectQuoteParamBuilder;
 import exchange.notbank.quote.paramBuilders.CreateInverseQuoteParamBuilder;
 import exchange.notbank.quote.paramBuilders.ExecuteQuoteParamBuilder;
 import exchange.notbank.quote.paramBuilders.GetQuoteParamBuilder;
-import exchange.notbank.quote.paramBuilders.GetQuotesParamBuilders;
+import exchange.notbank.quote.paramBuilders.GetQuotesParamBuilder;
 
 public class QuoteServiceTest {
   private static NotbankClient client;
@@ -24,14 +24,14 @@ public class QuoteServiceTest {
 
   @BeforeAll
   public static void beforeAll() throws InterruptedException, ExecutionException {
-    client = NotbankClient.Factory.createRestClient(TestHelper.HOST);
+    client = TestHelper.newRestClient();
     credentials = TestHelper.getUserCredentials();
     client.authenticate(credentials.userId, credentials.apiPublicKey, credentials.apiSecretKey).get();
   }
 
   @Test
   public void getQuotes() {
-    var futureResponse = client.getQuoteService().getQuotes(new GetQuotesParamBuilders(QuoteMode.DIRECT));
+    var futureResponse = client.getQuoteService().getQuotes(new GetQuotesParamBuilder().mode(QuoteMode.DIRECT));
     TestHelper.checkNoError(futureResponse);
   }
 
@@ -59,14 +59,14 @@ public class QuoteServiceTest {
 
     @Test
   public void getQuote() {
-    var futureResponse = client.getQuoteService().getQuote(new GetQuoteParamBuilder(UUID.fromString("c1c56ca3-75c3-4bb6-97e3-702448382cd3")));
+    var futureResponse = client.getQuoteService().getQuote(new GetQuoteParamBuilder(UUID.fromString("5774db41-2301-4032-ae79-c558193fd53b")));
     TestHelper.checkNoError(futureResponse);
   }
 
 
     @Test
   public void executeQuote() {
-    var futureResponse = client.getQuoteService().executeQuote(new ExecuteQuoteParamBuilder(UUID.fromString("c1c56ca3-75c3-4bb6-97e3-702448382cd3")));
+    var futureResponse = client.getQuoteService().executeQuote(new ExecuteQuoteParamBuilder(UUID.fromString("7d9b3314-40a5-43cf-bb39-c75cd8689ce8")));
     TestHelper.checkNoError(futureResponse);
   }
 

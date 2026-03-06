@@ -11,7 +11,7 @@ import exchange.notbank.wallet.constants.TransactionSubType;
 import exchange.notbank.wallet.constants.TransactionType;
 
 public class Transaction {
-  public final UUID id;
+  public final Long id;
   public final String currency;
   public final Direction direction;
   public final BigDecimal amount;
@@ -28,7 +28,7 @@ public class Transaction {
   @Json(name = "updated_at")
   public final String updatedAt;
 
-  public Transaction(UUID id, String currency, Direction direction, BigDecimal amount, BigDecimal fee,
+  public Transaction(Long id, String currency, Direction direction, BigDecimal amount, BigDecimal fee,
       BigDecimal balance, String address, String hash, TransactionType type, TransactionSubType subType,
       TransactionStatus status, String createdAt, String updatedAt) {
     this.id = id;

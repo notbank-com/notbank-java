@@ -1,10 +1,15 @@
 package exchange.notbank.core.adapters;
 
-import exchange.notbank.core.constants.MessageType;
+import java.util.Map;
+
 import com.squareup.moshi.FromJson;
 import com.squareup.moshi.ToJson;
 
+import exchange.notbank.core.constants.MessageType;
+
 public class MessageTypeAdapter {
+  Map<Integer, MessageType> enumMap = EnumMappingBuilder.buildMapping(MessageType.values(), e -> e.value);
+
   @ToJson
   int toJson(MessageType value) {
     return value.value;
@@ -12,6 +17,6 @@ public class MessageTypeAdapter {
 
   @FromJson
   MessageType fromJson(int value) {
-    return MessageType.values()[value];
+    return GetFromMap.get(enumMap, value, MessageType.class.getName());
   }
 }

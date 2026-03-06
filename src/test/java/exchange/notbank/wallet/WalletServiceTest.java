@@ -194,7 +194,7 @@ public class WalletServiceTest {
         DepositPaymentMethod.BANK_TRANSFER,
         "CLP",
         new BigDecimal("20000"))
-        .bankAccountId("72d3e264-2473-41fb-b3ca-a08231de05e2"));
+        .bankAccountId("fb963f6e-9258-4616-a25e-8967422b966d"));
     TestHelper.checkNoError(futureResponse);
   }
 
@@ -208,8 +208,7 @@ public class WalletServiceTest {
   @Test
   public void getTransactions() throws InterruptedException, ExecutionException {
     var futureResponse = client.getWalletService().getTransactions(new GetTransactionsParamBuilder());
-    System.out.println(futureResponse.get());
-    // TestHelper.checkNoError(futureResponse);
+    TestHelper.checkNoError(futureResponse);
   }
 
   @Test
