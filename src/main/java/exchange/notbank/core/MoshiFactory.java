@@ -10,9 +10,12 @@ import exchange.notbank.core.adapters.UUIDAdapter;
 import exchange.notbank.fee.adapters.IntOrderTypeAdapter;
 import exchange.notbank.fee.adapters.IntSideAdapter;
 import exchange.notbank.fee.adapters.MakerTakerAdapter;
+import exchange.notbank.quote.adapters.QuoteOperationAdapter;
+import exchange.notbank.quote.adapters.QuoteStateAdapter;
 import exchange.notbank.subscription.adapters.Level2Adapter;
 import exchange.notbank.subscription.adapters.SocketTradeAdapter;
 import exchange.notbank.trading.SimpleAccountsAdapter;
+import exchange.notbank.trading.adapters.DepthTypeAdapter;
 import exchange.notbank.trading.adapters.LastTradeAdapter;
 import exchange.notbank.trading.adapters.Level2SnapshotAdapter;
 import exchange.notbank.trading.adapters.OrdersFlagAdapter;
@@ -53,6 +56,9 @@ public class MoshiFactory {
         .add(new TransactionTypeAdapter())
         .add(new TransactionSubTypeAdapter())
         .add(new TransactionStatusAdapter())
+        .add(new QuoteOperationAdapter())
+        .add(new QuoteStateAdapter())
+        .add(new DepthTypeAdapter())
         .build();
   }
 }
