@@ -23,6 +23,9 @@ import exchange.notbank.trading.responses.SimpleUserAccounts;
 import exchange.notbank.trading.responses.SummaryMin;
 import exchange.notbank.wallet.adapters.DepositPaymentMethodAdapter;
 import exchange.notbank.wallet.adapters.DirectionAdapter;
+import exchange.notbank.wallet.adapters.TransactionStatusAdapter;
+import exchange.notbank.wallet.adapters.TransactionSubTypeAdapter;
+import exchange.notbank.wallet.adapters.TransactionTypeAdapter;
 import exchange.notbank.wallet.adapters.WithdrawalPaymentMethodAdapter;
 
 public class MoshiFactory {
@@ -47,6 +50,9 @@ public class MoshiFactory {
         .add(new DirectionAdapter())
         .add(new WithdrawalPaymentMethodAdapter())
         .add(new DepositPaymentMethodAdapter())
+        .add(new TransactionTypeAdapter())
+        .add(new TransactionSubTypeAdapter())
+        .add(new TransactionStatusAdapter())
         .build();
   }
 }
