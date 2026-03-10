@@ -59,7 +59,7 @@ public class QuoteServiceTest {
 
     @Test
   public void getQuote() {
-    var futureResponse = client.getQuoteService().getQuote(new GetQuoteParamBuilder(UUID.fromString("5774db41-2301-4032-ae79-c558193fd53b")));
+    var futureResponse = client.getQuoteService().getQuote(new GetQuoteParamBuilder(UUID.fromString("7d9b3314-40a5-43cf-bb39-c75cd8689ce8")));
     TestHelper.checkNoError(futureResponse);
   }
 

@@ -70,7 +70,7 @@ public class QuoteService {
    * https://apidoc.notbank.exchange/?http#getquote
    */
   public CompletableFuture<Quote> getQuote(GetQuoteParamBuilder paramBuilder) {
-    return requestPost(Endpoints.QUOTES + "/" + paramBuilder.quoteId, paramBuilder, responseAdapter::toQuote);
+    return requestGet(Endpoints.QUOTES + "/" + paramBuilder.quoteId, paramBuilder, responseAdapter::toQuote);
   }
 
   /**
