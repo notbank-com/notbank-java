@@ -150,8 +150,8 @@ public class WalletServiceResponseAdapter {
 
   Either<NotbankException, Optional<UUID>> toOptionalWithdrawalIdResponse(String jsonStr) {
     return handle(jsonStr, withdrawalIdResponseJsonAdapter)
-        .map(response -> response.data.withdrawalId)
-        .map(Optional::ofNullable);
+        .map(response -> Optional.ofNullable(response.data)
+            .flatMap(data -> Optional.ofNullable(data.withdrawalId)));
   }
 
   Either<NotbankException, List<Transaction>> toTransactionList(String jsonStr) {
