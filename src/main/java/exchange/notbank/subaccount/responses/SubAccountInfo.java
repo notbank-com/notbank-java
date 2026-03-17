@@ -18,6 +18,6 @@ public class SubAccountInfo {
 
   @Override
   public String toString() {
-    return "SubAccountInfo [id=" + id + ", alias=" + alias + "createdAt" + createdAt + "]";
+    return "SubAccountInfo [id=" + id + ", alias=" + alias + ", createdAt=" + createdAt + "]";
   }
 }
