@@ -141,11 +141,10 @@ public class HttpClient implements AutoCloseable {
     var request = customizeRequestBuilderFn.apply(withTimeoutIfPresent(HttpRequest.newBuilder()))
         .uri(URI.create(buildUrl(endpointCategory.getValue() + endpoint)))
         .method("POST", HttpRequest.BodyPublishers.ofString(text))
+        .header("Content-Type", "application/json")
         .header("charset", "utf-8")
         .build();
-    peekHttpRequest.accept(request, text);
-    return client.sendAsync(request, BodyHandlers.ofString())
-        .thenApply(response -> handleHttpResponse(endpointCategory, response));
+    return doRequest(endpointCategory, request, text);
   }
 
   private HttpRequest newJsonEncodedRequestWithParamsAsList(
@@ -161,7 +160,6 @@ public class HttpClient implements AutoCloseable {
         .header("charset", "utf-8")
         .build();
   }
-
 
   private Builder withTimeoutIfPresent(Builder builder) {
     if (optRequestTimeoutInMillis.isPresent()) {
