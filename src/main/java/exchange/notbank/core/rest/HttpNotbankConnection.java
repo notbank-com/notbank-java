@@ -89,7 +89,11 @@ public class HttpNotbankConnection implements NotbankConnection {
   @Override
   public <T> CompletableFuture<T> requestPostByText(EndpointCategory endpointCategory, String endpoint, String text,
       HttpConfiguration httpConfiguration, Function<String, Either<NotbankException, T>> deserializeFn) {
-    var future = httpClient.postText(endpointCategory, endpoint, text, httpConfiguration.customizeRequestBuilderFn);
+    var future = httpClient.postText(
+        endpointCategory,
+        endpoint,
+        text,
+        sessionToken.withSessionTokenIfPresent(httpConfiguration));
     return handleFutureResponse(future, deserializeFn);
   }
 
