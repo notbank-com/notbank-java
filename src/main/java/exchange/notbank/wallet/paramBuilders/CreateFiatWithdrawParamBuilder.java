@@ -58,6 +58,16 @@ public class CreateFiatWithdrawParamBuilder implements ParamBuilder {
     return this;
   }
 
+  public CreateFiatWithdrawParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public CreateFiatWithdrawParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
   public Map<String, Object> getParams() {
     return params;
   }

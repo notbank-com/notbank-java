@@ -43,6 +43,16 @@ public class CreateFiatDepositParamBuilder implements ParamBuilder {
     return this;
   }
 
+  public CreateFiatDepositParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public CreateFiatDepositParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
   public Map<String, Object> getParams() {
     return params;
   }

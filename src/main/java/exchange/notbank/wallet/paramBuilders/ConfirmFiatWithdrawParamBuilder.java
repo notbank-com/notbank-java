@@ -23,6 +23,21 @@ public class ConfirmFiatWithdrawParamBuilder implements ParamBuilder {
     this.withdrawalId = withdrawalId;
   }
 
+  public ExecuteQuoteParamBuilder accountId(Integer accountId){
+      this.params.put("account_id", userId);
+      return this;
+  }
+
+  public CreateFiatWithdrawParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public CreateFiatWithdrawParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
   public Map<String, Object> getParams() {
     return params;
   }
