@@ -21,6 +21,22 @@ public class DeleteClientBankAccountParamBuilder implements ParamBuilder {
     return bankAccountId;
   }
 
+
+  public DeleteClientBankAccountParamBuilder accountId(Integer accountId){
+    this.params.put("account_id", userId);
+    return this;
+  }
+
+  public DeleteClientBankAccountParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public DeleteClientBankAccountParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
   public Map<String, Object> getParams() {
     return params;
   }
