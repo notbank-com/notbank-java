@@ -22,6 +22,16 @@ public class CreateDepositAddressParamBuilder implements ParamBuilder {
     this.params.put("network", network);
   }
 
+  public CreateDepositAddressParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public CreateDepositAddressParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
   public Map<String, Object> getParams() {
     return params;
   }

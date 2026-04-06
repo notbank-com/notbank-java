@@ -27,6 +27,16 @@ public class AddWhitelistedAddressesParamBuilder implements ParamBuilder {
     return this;
   }
 
+  public AddWhitelistedAddressesParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public AddWhitelistedAddressesParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
   public Map<String, Object> getParams() {
     return params;
   }
