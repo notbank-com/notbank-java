@@ -22,6 +22,30 @@ public class CreateDirectQuoteParamBuilder implements ParamBuilder {
     this.params.put("operation", operation.value);
   }
 
+  public CreateDirectQuoteParamBuilder(String fromCurrency, BigDecimal fromAmount, String toCurrency, QuoteOperation operation) {
+    this.httpConfiguration = HttpConfiguration.empty();
+    this.params = new HashMap<>();
+    this.params.put("from_currency", fromCurrency);
+    this.params.put("from_amount", fromAmount);
+    this.params.put(("to_currency"), toCurrency);
+    this.params.put("operation", operation.value);
+  }
+
+  public CreateDirectQuoteParamBuilder accountId(Integer accountId){
+    this.params.put("account_id", userId);
+    return this;
+  }
+
+  public GetQuoteParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public GetQuoteParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
   public Map<String, Object> getParams() {
     return params;
   }

@@ -18,6 +18,21 @@ public class ExecuteQuoteParamBuilder implements ParamBuilder {
     this.quoteId = quoteId;
   }
 
+  public ExecuteQuoteParamBuilder accountId(Integer accountId){
+    this.params.put("account_id", userId);
+    return this;
+  }
+
+  public ExecuteQuoteParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public ExecuteQuoteParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
   public Map<String, Object> getParams() {
     return params;
   }
