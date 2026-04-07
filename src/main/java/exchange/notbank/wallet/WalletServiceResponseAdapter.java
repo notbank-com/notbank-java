@@ -18,6 +18,7 @@ import exchange.notbank.wallet.responses.Banks;
 import exchange.notbank.wallet.responses.CbuOwner;
 import exchange.notbank.wallet.responses.CurrencyNetworkTemplates;
 import exchange.notbank.wallet.responses.IdResponse;
+import exchange.notbank.wallet.responses.QrResponse;
 import exchange.notbank.wallet.responses.Transaction;
 import exchange.notbank.wallet.responses.UrlResponse;
 import exchange.notbank.wallet.responses.WhitelistedAddress;
@@ -35,6 +36,7 @@ public class WalletServiceResponseAdapter {
   private final JsonAdapter<DataResponse<IdResponse>> idResponseJsonAdapter;
   private final JsonAdapter<DataResponse<List<CurrencyNetworkTemplates>>> currencyNetworkTemplatesJsonAdapter;
   private final JsonAdapter<DataResponse<UrlResponse>> urlResponseJsonAdapter;
+  private final JsonAdapter<DataResponse<QrResponse>> qrResponseJsonAdapter;
   private final JsonAdapter<DataResponse<List<CbuOwner>>> cbuOwnerListJsonAdapter;
   private final JsonAdapter<DataResponse<WithdrawalIdResponse>> withdrawalIdResponseJsonAdapter;
   private final JsonAdapter<DataResponse<List<Transaction>>> transactionListJsonAdapter;
@@ -140,8 +142,13 @@ public class WalletServiceResponseAdapter {
     return handle(jsonStr, idResponseJsonAdapter).map(response -> response.data.id);
   }
 
-  Either<NotbankException, Optional<String>> toOptionalUrlResponse(String jsonStr) {
-    return handle(jsonStr, urlResponseJsonAdapter).map(response -> response.data.url).map(Optional::ofNullable);
+  Either<NotbankException, Optional<String>> toOptionalUrlorQrResponse(String jsonStr) {
+      var urlresult = handle(jsonStr, urlResponseJsonAdapter);
+      if(urlresult.isLeft()){
+        return handle(jsonStr, qrResponseJsonAdapter).map(response -> response.data.qr).map(Optional::ofNullable);
+      }else{
+       return urlresult.map(response -> response.data.url).map(Optional::ofNullable);
+      }
   }
 
   Either<NotbankException, List<CbuOwner>> toCbuOwnerList(String jsonStr) {
@@ -150,8 +157,8 @@ public class WalletServiceResponseAdapter {
 
   Either<NotbankException, Optional<UUID>> toOptionalWithdrawalIdResponse(String jsonStr) {
     return handle(jsonStr, withdrawalIdResponseJsonAdapter)
-        .map(response -> Optional.ofNullable(response.data)
-            .flatMap(data -> Optional.ofNullable(data.withdrawalId)));
+        .map(response -> response.data.withdrawalId)
+        .map(Optional::ofNullable);
   }
 
   Either<NotbankException, List<Transaction>> toTransactionList(String jsonStr) {
