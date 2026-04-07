@@ -22,6 +22,12 @@ public class Transaction {
   @Json(name = "sub_type")
   public final TransactionSubType subType;
   public final TransactionStatus status;
+  @Json(name = "reference_id")
+  public final Long referenceId;
+  @Json(name = "account_id")
+  public final Long accountId;
+  @Json(name = "legacy_id")
+  public final Long legacyId;
   @Json(name = "created_at")
   public final String createdAt;
   @Json(name = "updated_at")

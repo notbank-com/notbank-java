@@ -11,7 +11,15 @@ public enum TransactionSubType {
   TRADE(7),
   PAYMENT(8),
   SIMPLE(9),
-  RECTIFICATION(10);
+  RECTIFICATION(10),
+  TRANSFER(11),
+  HOLD(12),
+  MARGIN(13),
+  AIRDROP(14),
+  ORDER(15),
+  DISTRIBUTION_ENTRY(16),
+  MIGRATION(17),
+  MANUAL_ENTRY(18);
 
   public final Integer value;
 
