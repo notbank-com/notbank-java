@@ -105,14 +105,14 @@ public class WalletService {
 
   /**
    * https://apidoc.notbank.exchange/#deleteclientbankaccount
-   * 
+   *
    */
   public CompletableFuture<Void> deleteClientBankAccount(DeleteClientBankAccountParamBuilder paramBuilder) {
     return requestDelete(Endpoints.BANK_ACCOUNTS + "/" + paramBuilder.getBankAccountId(), paramBuilder,
         responseAdapter::toNone);
   }
 
-  /** 
+  /**
    *https://apidoc.notbank.exchange/#getnetworkstemplates
    */
   public CompletableFuture<List<CurrencyNetworkTemplates>> getNetworksTemplates(
@@ -163,7 +163,7 @@ public class WalletService {
 
   /**
    * https://apidoc.notbank.exchange/#resendverificationcodewhitelistedaddress
-   
+
    */
   public CompletableFuture<Void> resendVerificationCodeWhitelistedAddress(ResendVerificationCodeWhitelistedAddresParamBuilder paramBuilder) {
     return requestGet(Endpoints.WHITELISTED_ADDRESSES + "/" + paramBuilder.getWhitelistAddressId() + "/verification",
@@ -178,7 +178,7 @@ public class WalletService {
     return requestDelete(Endpoints.WHITELISTED_ADDRESSES + "/" + paramBuilder.getWhitelistAddressId(), paramBuilder,
         responseAdapter::toNone);
   }
-  
+
 
   /**
    * https://apidoc.notbank.exchange/#updateonestepwithdraw
@@ -200,7 +200,7 @@ public class WalletService {
    */
 
   public CompletableFuture<Optional<String>> createFiatDeposit(CreateFiatDepositParamBuilder paramBuilder) {
-    return requestPost(Endpoints.FIAT_DEPOSIT, paramBuilder, responseAdapter::toOptionalUrlResponse);
+    return requestPost(Endpoints.FIAT_DEPOSIT, paramBuilder, responseAdapter::toOptionalUrlorQrResponse);
   }
 
   /**

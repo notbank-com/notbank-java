@@ -3,6 +3,7 @@ package exchange.notbank.quote.paramBuilders;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import exchange.notbank.core.HttpConfiguration;
 import exchange.notbank.core.ParamBuilder;
@@ -31,7 +32,7 @@ public class CreateInverseQuoteParamBuilder implements ParamBuilder {
   }
 
   public CreateInverseQuoteParamBuilder accountId(Integer accountId){
-    this.params.put("account_id", userId);
+    this.params.put("account_id", accountId);
     return this;
   }
 

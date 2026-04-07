@@ -19,7 +19,7 @@ public class ExecuteQuoteParamBuilder implements ParamBuilder {
   }
 
   public ExecuteQuoteParamBuilder accountId(Integer accountId){
-    this.params.put("account_id", userId);
+    this.params.put("account_id", accountId);
     return this;
   }
 

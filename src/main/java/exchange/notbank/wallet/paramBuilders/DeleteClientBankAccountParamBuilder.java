@@ -2,6 +2,7 @@ package exchange.notbank.wallet.paramBuilders;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import exchange.notbank.core.HttpConfiguration;
 import exchange.notbank.core.ParamBuilder;
@@ -23,7 +24,7 @@ public class DeleteClientBankAccountParamBuilder implements ParamBuilder {
 
 
   public DeleteClientBankAccountParamBuilder accountId(Integer accountId){
-    this.params.put("account_id", userId);
+    this.params.put("account_id", accountId);
     return this;
   }
 

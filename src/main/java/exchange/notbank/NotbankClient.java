@@ -18,6 +18,7 @@ import exchange.notbank.subscription.SubscriptionService;
 import exchange.notbank.system.SystemService;
 import exchange.notbank.trading.TradingService;
 import exchange.notbank.users.UserService;
+import exchange.notbank.utils.UtilsService;
 import exchange.notbank.wallet.WalletService;
 
 public class NotbankClient {
@@ -34,12 +35,13 @@ public class NotbankClient {
   public final QuoteService quoteService;
   public final ReportService reportService;
   public final SubAccountService subaccountService;
+  public final UtilsService utilsService;
 
   public NotbankClient(Supplier<NotbankConnection> connectionSupplier, AccountService accountService,
       FeeService feeService, InstrumentService instrumentService, ProductService productService,
       SubscriptionService subscriptionService, SystemService systemService, TradingService tradingService,
       UserService userService, WalletService walletService, QuoteService quoteService, ReportService reportService,
-      SubAccountService subAccountService) {
+      SubAccountService subAccountService, UtilsService utilsService) {
     this.connectionSupplier = connectionSupplier;
     this.accountService = accountService;
     this.feeService = feeService;
@@ -53,6 +55,7 @@ public class NotbankClient {
     this.quoteService = quoteService;
     this.reportService = reportService;
     this.subaccountService = subAccountService;
+    this.utilsService = utilsService;
   }
 
   public static class Factory extends NotbankClientFactory {
@@ -127,4 +130,9 @@ public class NotbankClient {
   public SubAccountService getSubaccountService() {
     return subaccountService;
   }
+
+  public UtilsService getUtilsService(){
+    return utilsService;
+  }
+
 }

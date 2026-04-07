@@ -3,6 +3,7 @@ package exchange.notbank.quote.paramBuilders;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import exchange.notbank.core.HttpConfiguration;
 import exchange.notbank.core.ParamBuilder;
@@ -32,16 +33,16 @@ public class CreateDirectQuoteParamBuilder implements ParamBuilder {
   }
 
   public CreateDirectQuoteParamBuilder accountId(Integer accountId){
-    this.params.put("account_id", userId);
+    this.params.put("account_id", accountId);
     return this;
   }
 
-  public GetQuoteParamBuilder userId(UUID userId) {
+  public CreateDirectQuoteParamBuilder userId(UUID userId) {
       this.params.put("user_id", userId);
       return this;
   }
 
-  public GetQuoteParamBuilder userId(String userId) {
+  public CreateDirectQuoteParamBuilder userId(String userId) {
       this.params.put("user_id", userId);
       return this;
   }
