@@ -2,6 +2,7 @@ package exchange.notbank.wallet.paramBuilders;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import exchange.notbank.core.HttpConfiguration;
 import exchange.notbank.core.ParamBuilder;
@@ -19,12 +20,12 @@ public class UpdateOneStepWithdrawParamBuilder implements ParamBuilder {
     this.params.put("otp", otp);
   }
 
-  public DeleteWhitelistedAddressesParamBuilder userId(UUID userId) {
+  public UpdateOneStepWithdrawParamBuilder userId(UUID userId) {
       this.params.put("user_id", userId);
       return this;
   }
 
-  public DeleteWhitelistedAddressesParamBuilder userId(String userId) {
+  public UpdateOneStepWithdrawParamBuilder userId(String userId) {
       this.params.put("user_id", userId);
       return this;
   }

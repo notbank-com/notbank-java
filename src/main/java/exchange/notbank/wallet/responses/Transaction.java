@@ -35,7 +35,7 @@ public class Transaction {
 
   public Transaction(Long id, String currency, Direction direction, BigDecimal amount, BigDecimal fee,
       BigDecimal balance, String address, String hash, TransactionType type, TransactionSubType subType,
-      TransactionStatus status, String createdAt, String updatedAt) {
+      TransactionStatus status, Long referenceId, Long accountId, Long legacyId,  String createdAt, String updatedAt) {
     this.id = id;
     this.currency = currency;
     this.direction = direction;
@@ -47,6 +47,9 @@ public class Transaction {
     this.type = type;
     this.subType = subType;
     this.status = status;
+    this.referenceId = referenceId;
+    this.accountId = accountId;
+    this.legacyId = legacyId;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }
@@ -55,6 +58,8 @@ public class Transaction {
   public String toString() {
     return "Transaction [id=" + id + ", currency=" + currency + ", direction=" + direction + ", amount=" + amount
         + ", fee=" + fee + ", balance=" + balance + ", address=" + address + ", hash=" + hash + ", type=" + type
-        + ", subType=" + subType + ", status=" + status + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+        + ", subType=" + subType + ", status=" + status + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt +
+        ", referenceId=" + referenceId + ", accountId=" + accountId + ", legacyId=" + legacyId +
+        "]";
   }
 }

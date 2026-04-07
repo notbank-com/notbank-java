@@ -41,7 +41,7 @@ public class TestHelper {
   public static <T> void checkRightOrErrorType(CompletableFuture<T> futureResponse, ErrorType code) {
     var response = CompletableFutureAdapter.getToEither(futureResponse);
     if (response.isLeft()) {
-      assertEquals(response.getLeft().errorType, code);
+      assertTrue(response.getLeft().errorType.value.equals(code.value));
     }
   }
 

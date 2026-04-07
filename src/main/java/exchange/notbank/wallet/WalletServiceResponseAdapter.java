@@ -100,6 +100,10 @@ public class WalletServiceResponseAdapter {
         DataResponse.class,
         TransactionListType);
     this.transactionListJsonAdapter = moshi.adapter(TransactionListResponseType);
+    ParameterizedType qrResponseType = Types.newParameterizedType(
+        DataResponse.class,
+        QrResponse.class);
+    this.qrResponseJsonAdapter =moshi.adapter(qrResponseType);
   }
 
   public Either<NotbankException, Void> toNone(String jsonStr) {
