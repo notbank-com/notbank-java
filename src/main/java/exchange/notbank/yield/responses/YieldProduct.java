@@ -1,4 +1,4 @@
-package exchange.notbank.product.responses;
+package exchange.notbank.yield.responses;
 
 import com.squareup.moshi.Json;
 

@@ -1,4 +1,4 @@
-package exchange.notbank.wallet.paramBuilders;
+package exchange.notbank.yield.paramBuilders;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -8,16 +8,16 @@ import java.util.UUID;
 import exchange.notbank.core.HttpConfiguration;
 import exchange.notbank.core.ParamBuilder;
 
-public class DepositToYieldParamBuilder implements ParamBuilder {
+public class WithdrawFromYieldParamBuilder implements ParamBuilder {
   protected final Map<String, Object> params;
   protected HttpConfiguration httpConfiguration;
 
-  public DepositToYieldParamBuilder(Integer accountId,  String currency, Integer productId, String type,
+  public WithdrawFromYieldParamBuilder(Integer accountId,  String currency, Integer productId, String type,
       BigDecimal amount) {
-    this(accountId.toString(), currency,productId, type, amount);
+    this(accountId.toString(),currency, productId, type, amount);
   }
 
-  public DepositToYieldParamBuilder(String accountId, String currency, Integer productId, String type,
+  public WithdrawFromYieldParamBuilder(String accountId, String currency, Integer productId, String type,
       BigDecimal amount) {
     this.httpConfiguration = new HttpConfiguration();
     this.params = new HashMap<>();
@@ -28,12 +28,12 @@ public class DepositToYieldParamBuilder implements ParamBuilder {
     this.params.put("type", type);
   }
 
-  public DepositToYieldParamBuilder userId(UUID userId) {
+  public WithdrawFromYieldParamBuilder userId(UUID userId) {
       this.params.put("user_id", userId);
       return this;
   }
 
-  public DepositToYieldParamBuilder userId(String userId) {
+  public WithdrawFromYieldParamBuilder userId(String userId) {
       this.params.put("user_id", userId);
       return this;
   }
@@ -46,7 +46,7 @@ public class DepositToYieldParamBuilder implements ParamBuilder {
     return httpConfiguration;
   }
 
-  public DepositToYieldParamBuilder setHttpConfiguration(HttpConfiguration httpConfiguration) {
+  public WithdrawFromYieldParamBuilder setHttpConfiguration(HttpConfiguration httpConfiguration) {
     this.httpConfiguration = httpConfiguration;
     return this;
   }
