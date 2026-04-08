@@ -34,6 +34,7 @@ import exchange.notbank.wallet.paramBuilders.GetnetworksTemplatesParamBuilder;
 import exchange.notbank.wallet.paramBuilders.ResendVerificationCodeWhitelistedAddresParamBuilder;
 import exchange.notbank.wallet.paramBuilders.TransferFundsParamBuilder;
 import exchange.notbank.wallet.paramBuilders.UpdateOneStepWithdrawParamBuilder;
+import exchange.notbank.wallet.paramBuilders.GetWithdrawConfigStatusParamBuilder;
 
 public class WalletServiceTest {
   private static UserCredentials credentials;
@@ -227,6 +228,14 @@ public class WalletServiceTest {
   public void deleteClientBankAccount() {
     var futureResponse = client.getWalletService()
         .deleteClientBankAccount(new DeleteClientBankAccountParamBuilder("72d3e264-2473-41fb-b3ca-a08231de05e2"));
+    TestHelper.checkNoError(futureResponse);
+  }
+
+  @Test
+  public void getWithdrawalStatus() {
+    var futureResponse = client.getWalletService().getOneStepWithdrawStatus(
+      new GetWithdrawConfigStatusParamBuilder(credentials.accountId).userId(credentials.userId.toString())
+    );
     TestHelper.checkNoError(futureResponse);
   }
 }
