@@ -42,6 +42,7 @@ public class WalletServiceResponseAdapter {
   private final JsonAdapter<DataResponse<WithdrawalIdResponse>> withdrawalIdResponseJsonAdapter;
   private final JsonAdapter<DataResponse<WithdrawalConfigurationStatus>> withdrawalConfigurationResponseJsonAdapter;
   private final JsonAdapter<DataResponse<List<Transaction>>> transactionListJsonAdapter;
+  private final JsonAdapter<DataResponse<Integer>> yieldInOutOperationJsonAdapter;
 
   public WalletServiceResponseAdapter(Moshi moshi) {
     this.errorHandler = ErrorHandler.Factory.createNbErrorHandler(moshi);
@@ -110,6 +111,10 @@ public class WalletServiceResponseAdapter {
         DataResponse.class,
         WithdrawalConfigurationStatus.class);
     this.withdrawalConfigurationResponseJsonAdapter = moshi.adapter(withdrawConfigurationResponseType);
+    ParameterizedType YieldInOutResponseType = Types.newParameterizedType(
+        DataResponse.class,
+        Integer.class);
+    this.yieldInOutOperationJsonAdapter = moshi.adapter(YieldInOutResponseType);
   }
 
   public Either<NotbankException, Void> toNone(String jsonStr) {
@@ -177,6 +182,14 @@ public class WalletServiceResponseAdapter {
 
   Either<NotbankException, WithdrawalConfigurationStatus> toWithdrawStatus(String jsonStr) {
     return handle(jsonStr, withdrawalConfigurationResponseJsonAdapter).map(response -> response.data);
+  }
+
+  Either<NotbankException, Integer> toYieldWithdrawId(String jsonStr) {
+    return handle(jsonStr, yieldInOutOperationJsonAdapter).map(response -> response.data);
+  }
+
+  Either<NotbankException, Integer> toYieldDepositId(String jsonStr) {
+    return handle(jsonStr, yieldInOutOperationJsonAdapter).map(response -> response.data);
   }
 
 }
