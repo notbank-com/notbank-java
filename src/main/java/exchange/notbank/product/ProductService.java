@@ -15,9 +15,7 @@ import exchange.notbank.product.constants.Endpoints;
 import exchange.notbank.product.paramBuilders.GetProductParamBuilder;
 import exchange.notbank.product.paramBuilders.GetProductsParamBuilder;
 import exchange.notbank.product.paramBuilders.GetVerificationLevelConfigParamBuilder;
-import exchange.notbank.product.paramBuilders.GetYieldProductsParamBuilder;
 import exchange.notbank.product.responses.Product;
-import exchange.notbank.product.responses.YieldProduct;
 import exchange.notbank.product.responses.VerificationLevelConfig;
 import io.vavr.control.Either;
 
@@ -98,17 +96,6 @@ public class ProductService {
         Endpoints.GET_VERIFICATION_LEVEL_CONFIG,
         paramBuilder,
         responseAdapter::toVerificationLevelConfig);
-  }
-
-  /**
-   * https://stg.apidoc.notbank.exchange/#getyieldproducts
-   */
-  public CompletableFuture<List<YieldProduct>> getYieldProducts(
-      GetYieldProductsParamBuilder paramBuilder) {
-        return requestGet(
-            Endpoints.GET_YIELD_PRODUCTS,
-            paramBuilder,
-            responseAdapter::toYieldProductList);
   }
 
 }

@@ -1,4 +1,4 @@
-package exchange.notbank.product.paramBuilders;
+package exchange.notbank.yield.paramBuilders;
 
 import java.util.HashMap;
 import java.util.Map;

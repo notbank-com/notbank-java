@@ -45,6 +45,8 @@ import exchange.notbank.utils.UtilsService;
 import exchange.notbank.utils.UtilsServiceResponseAdapter;
 import exchange.notbank.wallet.WalletService;
 import exchange.notbank.wallet.WalletServiceResponseAdapter;
+import exchange.notbank.yield.YieldService;
+import exchange.notbank.yield.YieldServiceResponseAdapter;
 
 public class NotbankClientFactory {
   private static final String HOST = "api.notbank.exchange";
@@ -179,6 +181,9 @@ public class NotbankClientFactory {
     var utilsService = new UtilsService(
       () -> notbankConnectionInterceptor.apply(notbankConnection),
       new UtilsServiceResponseAdapter(moshi));
+    var yieldService = new YieldService(
+      () -> notbankConnectionInterceptor.apply(notbankConnection),
+      new YieldServiceResponseAdapter(moshi));
     return new NotbankClient(
         () -> notbankConnection,
         accountService,
@@ -193,7 +198,8 @@ public class NotbankClientFactory {
         quoteService,
         reportService,
         subaccountService,
-        utilsService
+        utilsService,
+        yieldService
     );
   }
 }
