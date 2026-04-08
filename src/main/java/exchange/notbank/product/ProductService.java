@@ -100,6 +100,9 @@ public class ProductService {
         responseAdapter::toVerificationLevelConfig);
   }
 
+  /**
+   * https://stg.apidoc.notbank.exchange/#getyieldproducts
+   */
   public CompletableFuture<List<YieldProduct>> getYieldProducts(
       GetYieldProductsParamBuilder paramBuilder) {
         return requestGet(

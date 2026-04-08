@@ -23,6 +23,7 @@ import exchange.notbank.wallet.responses.Transaction;
 import exchange.notbank.wallet.responses.UrlResponse;
 import exchange.notbank.wallet.responses.WhitelistedAddress;
 import exchange.notbank.wallet.responses.WithdrawalIdResponse;
+import exchange.notbank.wallet.responses.WithdrawalConfigurationStatus;
 import io.vavr.control.Either;
 
 public class WalletServiceResponseAdapter {
@@ -39,6 +40,7 @@ public class WalletServiceResponseAdapter {
   private final JsonAdapter<DataResponse<QrResponse>> qrResponseJsonAdapter;
   private final JsonAdapter<DataResponse<List<CbuOwner>>> cbuOwnerListJsonAdapter;
   private final JsonAdapter<DataResponse<WithdrawalIdResponse>> withdrawalIdResponseJsonAdapter;
+  private final JsonAdapter<DataResponse<WithdrawalConfigurationStatus>> withdrawalConfigurationResponseJsonAdapter;
   private final JsonAdapter<DataResponse<List<Transaction>>> transactionListJsonAdapter;
 
   public WalletServiceResponseAdapter(Moshi moshi) {
@@ -104,6 +106,10 @@ public class WalletServiceResponseAdapter {
         DataResponse.class,
         QrResponse.class);
     this.qrResponseJsonAdapter =moshi.adapter(qrResponseType);
+    ParameterizedType withdrawConfigurationResponseType = Types.newParameterizedType(
+        DataResponse.class,
+        WithdrawalConfigurationStatus.class);
+    this.withdrawalConfigurationResponseJsonAdapter = moshi.adapter(withdrawConfigurationResponseType);
   }
 
   public Either<NotbankException, Void> toNone(String jsonStr) {
@@ -167,6 +173,10 @@ public class WalletServiceResponseAdapter {
 
   Either<NotbankException, List<Transaction>> toTransactionList(String jsonStr) {
     return handle(jsonStr, transactionListJsonAdapter).map(response -> response.data);
+  }
+
+  Either<NotbankException, WithdrawalConfigurationStatus> toWithdrawStatus(String jsonStr) {
+    return handle(jsonStr, withdrawalConfigurationResponseJsonAdapter).map(response -> response.data);
   }
 
 }

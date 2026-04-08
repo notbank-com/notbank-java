@@ -33,6 +33,7 @@ import exchange.notbank.wallet.paramBuilders.GetnetworksTemplatesParamBuilder;
 import exchange.notbank.wallet.paramBuilders.ResendVerificationCodeWhitelistedAddresParamBuilder;
 import exchange.notbank.wallet.paramBuilders.TransferFundsParamBuilder;
 import exchange.notbank.wallet.paramBuilders.UpdateOneStepWithdrawParamBuilder;
+import exchange.notbank.wallet.paramBuilders.GetWithdrawConfigStatusParamBuilder;
 import exchange.notbank.wallet.responses.BankAccount;
 import exchange.notbank.wallet.responses.BankAccounts;
 import exchange.notbank.wallet.responses.Banks;
@@ -40,6 +41,7 @@ import exchange.notbank.wallet.responses.CbuOwner;
 import exchange.notbank.wallet.responses.CurrencyNetworkTemplates;
 import exchange.notbank.wallet.responses.Transaction;
 import exchange.notbank.wallet.responses.WhitelistedAddress;
+import exchange.notbank.wallet.responses.WithdrawalConfigurationStatus;
 import io.vavr.control.Either;
 
 public class WalletService {
@@ -186,6 +188,14 @@ public class WalletService {
 
   public CompletableFuture<Void> updateOneStepWithdraw(UpdateOneStepWithdrawParamBuilder paramBuilder) {
     return requestPost(Endpoints.UPDATE_ONE_STEP_WITHDRAW, paramBuilder, responseAdapter::toNone);
+  }
+
+  /**
+   * https://apidoc.notbank.exchange/#getonestepwithdraw
+   */
+
+  public CompletableFuture<WithdrawalConfigurationStatus> getOneStepWithdrawStatus(GetWithdrawConfigStatusParamBuilder paramBuilder) {
+    return requestGet(Endpoints.UPDATE_ONE_STEP_WITHDRAW, paramBuilder, responseAdapter::toWithdrawStatus);
   }
 
   /**
