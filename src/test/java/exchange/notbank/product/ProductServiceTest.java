@@ -8,6 +8,7 @@ import exchange.notbank.NotbankClient;
 import exchange.notbank.TestHelper;
 import exchange.notbank.product.paramBuilders.GetProductParamBuilder;
 import exchange.notbank.product.paramBuilders.GetProductsParamBuilder;
+import exchange.notbank.product.paramBuilders.GetYieldProductsParamBuilder;
 import exchange.notbank.product.paramBuilders.GetVerificationLevelConfigParamBuilder;
 
 public class ProductServiceTest {
@@ -61,5 +62,12 @@ public class ProductServiceTest {
         .getVerificationLevelConfig(new GetVerificationLevelConfigParamBuilder(credentials.accountId));
     TestHelper.checkNoError(futureResponse);
   }
+
+  @Test
+  public void getYieldProducts() {
+    var futureResponse = client.getProductService().getYieldProducts(new GetYieldProductsParamBuilder());
+    TestHelper.checkNoError(futureResponse);
+  }
+
 
 }
