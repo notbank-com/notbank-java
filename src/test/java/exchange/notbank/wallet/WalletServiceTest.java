@@ -23,6 +23,7 @@ import exchange.notbank.wallet.paramBuilders.CreateFiatDepositParamBuilder;
 import exchange.notbank.wallet.paramBuilders.CreateFiatWithdrawParamBuilder;
 import exchange.notbank.wallet.paramBuilders.DeleteClientBankAccountParamBuilder;
 import exchange.notbank.wallet.paramBuilders.DeleteWhitelistedAddressesParamBuilder;
+import exchange.notbank.wallet.paramBuilders.DepositToYieldParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetBanksParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetClientBankAccountParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetClientBankAccountsParamBuilder;
@@ -34,6 +35,7 @@ import exchange.notbank.wallet.paramBuilders.GetnetworksTemplatesParamBuilder;
 import exchange.notbank.wallet.paramBuilders.ResendVerificationCodeWhitelistedAddresParamBuilder;
 import exchange.notbank.wallet.paramBuilders.TransferFundsParamBuilder;
 import exchange.notbank.wallet.paramBuilders.UpdateOneStepWithdrawParamBuilder;
+import exchange.notbank.wallet.paramBuilders.WithdrawFromYieldParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetWithdrawConfigStatusParamBuilder;
 
 public class WalletServiceTest {
@@ -235,6 +237,34 @@ public class WalletServiceTest {
   public void getWithdrawalStatus() {
     var futureResponse = client.getWalletService().getOneStepWithdrawStatus(
       new GetWithdrawConfigStatusParamBuilder(credentials.accountId).userId(credentials.userId.toString())
+    );
+    TestHelper.checkNoError(futureResponse);
+  }
+
+  @Test
+  public void toYieldDeposit() {
+    var futureResponse = client.getWalletService().depositToYield(
+      new DepositToYieldParamBuilder(
+       credentials.accountId,
+       "USDT",
+       3,
+       "1",
+       new BigDecimal("1")
+      ).userId(credentials.userId.toString())
+    );
+    TestHelper.checkNoError(futureResponse);
+  }
+
+  @Test
+  public void fromYieldWithdrawal() {
+    var futureResponse = client.getWalletService().withdrawFromYield(
+      new WithdrawFromYieldParamBuilder(
+       credentials.accountId,
+       "USDT",
+       3,
+       "1",
+       new BigDecimal("1")
+      ).userId(credentials.userId.toString())
     );
     TestHelper.checkNoError(futureResponse);
   }

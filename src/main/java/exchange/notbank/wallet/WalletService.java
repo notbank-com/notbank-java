@@ -22,6 +22,7 @@ import exchange.notbank.wallet.paramBuilders.CreateFiatDepositParamBuilder;
 import exchange.notbank.wallet.paramBuilders.CreateFiatWithdrawParamBuilder;
 import exchange.notbank.wallet.paramBuilders.DeleteClientBankAccountParamBuilder;
 import exchange.notbank.wallet.paramBuilders.DeleteWhitelistedAddressesParamBuilder;
+import exchange.notbank.wallet.paramBuilders.DepositToYieldParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetClientBankAccountParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetClientBankAccountsParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetBanksParamBuilder;
@@ -33,6 +34,7 @@ import exchange.notbank.wallet.paramBuilders.GetnetworksTemplatesParamBuilder;
 import exchange.notbank.wallet.paramBuilders.ResendVerificationCodeWhitelistedAddresParamBuilder;
 import exchange.notbank.wallet.paramBuilders.TransferFundsParamBuilder;
 import exchange.notbank.wallet.paramBuilders.UpdateOneStepWithdrawParamBuilder;
+import exchange.notbank.wallet.paramBuilders.WithdrawFromYieldParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetWithdrawConfigStatusParamBuilder;
 import exchange.notbank.wallet.responses.BankAccount;
 import exchange.notbank.wallet.responses.BankAccounts;
@@ -247,5 +249,19 @@ public class WalletService {
    */
   public CompletableFuture<List<Transaction>> getTransactions(GetTransactionsParamBuilder paramBuilder) {
     return requestGet(Endpoints.TRANSACTIONS, paramBuilder, responseAdapter::toTransactionList);
+  }
+
+  /**
+   * https://apidoc.notbank.exchange/?http#deposittoyield
+   */
+  public CompletableFuture<Integer> depositToYield(DepositToYieldParamBuilder paramBuilder) {
+    return requestPost(Endpoints.YIELD_DEPOSIT, paramBuilder, responseAdapter::toYieldDepositId);
+  }
+
+  /**
+   * https://apidoc.notbank.exchange/?http#withdrawfromyield
+   */
+  public CompletableFuture<Integer> withdrawFromYield(WithdrawFromYieldParamBuilder paramBuilder) {
+    return requestPost(Endpoints.YIELD_WITHDRAW, paramBuilder, responseAdapter::toYieldWithdrawId);
   }
 }
