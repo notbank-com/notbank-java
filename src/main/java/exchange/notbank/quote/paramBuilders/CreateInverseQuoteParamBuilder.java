@@ -18,22 +18,8 @@ public class CreateInverseQuoteParamBuilder implements ParamBuilder {
     this.params = new HashMap<>();
     this.params.put("account_id", accountId);
     this.params.put("from_currency", fromCurrency);
-    this.params.put(("to_currency"), toCurrency);
+    this.params.put("to_currency", toCurrency);
     this.params.put("to_amount", toAmount);
-  }
-
-  public CreateInverseQuoteParamBuilder(String fromCurrency, BigDecimal toAmount,
-      String toCurrency) {
-    this.httpConfiguration = HttpConfiguration.empty();
-    this.params = new HashMap<>();
-    this.params.put("from_currency", fromCurrency);
-    this.params.put(("to_currency"), toCurrency);
-    this.params.put("to_amount", toAmount);
-  }
-
-  public CreateInverseQuoteParamBuilder accountId(Integer accountId){
-    this.params.put("account_id", accountId);
-    return this;
   }
 
   public CreateInverseQuoteParamBuilder userId(UUID userId) {

@@ -41,11 +41,6 @@ public class AddClientBankAccountParamBuilder implements ParamBuilder {
     return this;
   }
 
-  public AddClientBankAccountParamBuilder accountId(Integer accountId){
-    this.params.put("account_id", accountId);
-    return this;
-  }
-
   public AddClientBankAccountParamBuilder userId(UUID userId) {
       this.params.put("user_id", userId);
       return this;
