@@ -2,7 +2,7 @@ package exchange.notbank.wallet.constants;
 
 public enum DepositPaymentMethod {
   BANK_TRANSFER(1),
-  WEBPAY(2),
+  WEB_PAY(2),
   VIRTUAL_WALLET(3),
   QR_CODE(4),
   ASSISTED_BANK_TRANSFER(5),
