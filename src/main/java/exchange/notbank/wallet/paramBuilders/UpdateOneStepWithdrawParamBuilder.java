@@ -2,6 +2,7 @@ package exchange.notbank.wallet.paramBuilders;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import exchange.notbank.core.HttpConfiguration;
 import exchange.notbank.core.ParamBuilder;
@@ -17,6 +18,16 @@ public class UpdateOneStepWithdrawParamBuilder implements ParamBuilder {
     this.params.put("account_id", accountId);
     this.params.put("action", action);
     this.params.put("otp", otp);
+  }
+
+  public UpdateOneStepWithdrawParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public UpdateOneStepWithdrawParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
   }
 
   public Map<String, Object> getParams() {

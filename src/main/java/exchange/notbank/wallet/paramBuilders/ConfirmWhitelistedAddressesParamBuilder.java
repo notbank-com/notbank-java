@@ -28,6 +28,16 @@ public class ConfirmWhitelistedAddressesParamBuilder implements ParamBuilder {
     return whitelistAddressId;
   }
 
+  public ConfirmWhitelistedAddressesParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public ConfirmWhitelistedAddressesParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
   public Map<String, Object> getParams() {
     return params;
   }

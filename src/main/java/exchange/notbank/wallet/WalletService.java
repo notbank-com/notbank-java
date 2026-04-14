@@ -33,6 +33,7 @@ import exchange.notbank.wallet.paramBuilders.GetnetworksTemplatesParamBuilder;
 import exchange.notbank.wallet.paramBuilders.ResendVerificationCodeWhitelistedAddresParamBuilder;
 import exchange.notbank.wallet.paramBuilders.TransferFundsParamBuilder;
 import exchange.notbank.wallet.paramBuilders.UpdateOneStepWithdrawParamBuilder;
+import exchange.notbank.wallet.paramBuilders.GetWithdrawConfigStatusParamBuilder;
 import exchange.notbank.wallet.responses.BankAccount;
 import exchange.notbank.wallet.responses.BankAccounts;
 import exchange.notbank.wallet.responses.Banks;
@@ -40,6 +41,7 @@ import exchange.notbank.wallet.responses.CbuOwner;
 import exchange.notbank.wallet.responses.CurrencyNetworkTemplates;
 import exchange.notbank.wallet.responses.Transaction;
 import exchange.notbank.wallet.responses.WhitelistedAddress;
+import exchange.notbank.wallet.responses.WithdrawalConfigurationStatus;
 import io.vavr.control.Either;
 
 public class WalletService {
@@ -105,14 +107,14 @@ public class WalletService {
 
   /**
    * https://apidoc.notbank.exchange/#deleteclientbankaccount
-   * 
+   *
    */
   public CompletableFuture<Void> deleteClientBankAccount(DeleteClientBankAccountParamBuilder paramBuilder) {
     return requestDelete(Endpoints.BANK_ACCOUNTS + "/" + paramBuilder.getBankAccountId(), paramBuilder,
         responseAdapter::toNone);
   }
 
-  /** 
+  /**
    *https://apidoc.notbank.exchange/#getnetworkstemplates
    */
   public CompletableFuture<List<CurrencyNetworkTemplates>> getNetworksTemplates(
@@ -163,7 +165,7 @@ public class WalletService {
 
   /**
    * https://apidoc.notbank.exchange/#resendverificationcodewhitelistedaddress
-   
+
    */
   public CompletableFuture<Void> resendVerificationCodeWhitelistedAddress(ResendVerificationCodeWhitelistedAddresParamBuilder paramBuilder) {
     return requestGet(Endpoints.WHITELISTED_ADDRESSES + "/" + paramBuilder.getWhitelistAddressId() + "/verification",
@@ -178,7 +180,7 @@ public class WalletService {
     return requestDelete(Endpoints.WHITELISTED_ADDRESSES + "/" + paramBuilder.getWhitelistAddressId(), paramBuilder,
         responseAdapter::toNone);
   }
-  
+
 
   /**
    * https://apidoc.notbank.exchange/#updateonestepwithdraw
@@ -186,6 +188,14 @@ public class WalletService {
 
   public CompletableFuture<Void> updateOneStepWithdraw(UpdateOneStepWithdrawParamBuilder paramBuilder) {
     return requestPost(Endpoints.UPDATE_ONE_STEP_WITHDRAW, paramBuilder, responseAdapter::toNone);
+  }
+
+  /**
+   * https://apidoc.notbank.exchange/#getonestepwithdraw
+   */
+
+  public CompletableFuture<WithdrawalConfigurationStatus> getOneStepWithdrawStatus(GetWithdrawConfigStatusParamBuilder paramBuilder) {
+    return requestGet(Endpoints.UPDATE_ONE_STEP_WITHDRAW, paramBuilder, responseAdapter::toWithdrawStatus);
   }
 
   /**
@@ -200,7 +210,7 @@ public class WalletService {
    */
 
   public CompletableFuture<Optional<String>> createFiatDeposit(CreateFiatDepositParamBuilder paramBuilder) {
-    return requestPost(Endpoints.FIAT_DEPOSIT, paramBuilder, responseAdapter::toOptionalUrlResponse);
+    return requestPost(Endpoints.FIAT_DEPOSIT, paramBuilder, responseAdapter::toOptionalUrlorQrResponse);
   }
 
   /**

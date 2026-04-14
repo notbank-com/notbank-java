@@ -2,6 +2,7 @@ package exchange.notbank.wallet.paramBuilders;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import exchange.notbank.core.HttpConfiguration;
 import exchange.notbank.core.ParamBuilder;
@@ -38,6 +39,16 @@ public class AddClientBankAccountParamBuilder implements ParamBuilder {
   public AddClientBankAccountParamBuilder province(String value) {
     this.params.put("province", value);
     return this;
+  }
+
+  public AddClientBankAccountParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public AddClientBankAccountParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
   }
 
   public Map<String, Object> getParams() {

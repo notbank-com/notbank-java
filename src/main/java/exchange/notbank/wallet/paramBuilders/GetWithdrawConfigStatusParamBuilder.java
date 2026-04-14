@@ -1,4 +1,4 @@
-package exchange.notbank.quote.paramBuilders;
+package exchange.notbank.wallet.paramBuilders;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,28 +6,23 @@ import java.util.UUID;
 
 import exchange.notbank.core.HttpConfiguration;
 import exchange.notbank.core.ParamBuilder;
-import exchange.notbank.quote.constants.QuoteMode;
 
-public class GetQuotesParamBuilder implements ParamBuilder {
+public class GetWithdrawConfigStatusParamBuilder implements ParamBuilder {
   private final Map<String, Object> params;
   private HttpConfiguration httpConfiguration;
 
-  public GetQuotesParamBuilder() {
+  public GetWithdrawConfigStatusParamBuilder(Integer accountId) {
     this.httpConfiguration = HttpConfiguration.empty();
     this.params = new HashMap<>();
-
+    this.params.put("account_id", accountId);
   }
 
-  public GetQuotesParamBuilder mode(QuoteMode value) {
-    this.params.put("mode", value);
-    return this;
-  }
-
-  public GetQuotesParamBuilder userId(UUID userId) {
+  public GetWithdrawConfigStatusParamBuilder userId(UUID userId) {
       this.params.put("user_id", userId);
       return this;
   }
-  public GetQuotesParamBuilder userId(String userId) {
+
+  public GetWithdrawConfigStatusParamBuilder userId(String userId) {
       this.params.put("user_id", userId);
       return this;
   }
@@ -40,7 +35,7 @@ public class GetQuotesParamBuilder implements ParamBuilder {
     return httpConfiguration;
   }
 
-  public GetQuotesParamBuilder setHttpConfiguration(HttpConfiguration httpConfiguration) {
+  public GetWithdrawConfigStatusParamBuilder setHttpConfiguration(HttpConfiguration httpConfiguration) {
     this.httpConfiguration = httpConfiguration;
     return this;
   }

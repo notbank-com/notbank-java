@@ -3,6 +3,7 @@ package exchange.notbank.wallet.paramBuilders;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import exchange.notbank.core.HttpConfiguration;
 import exchange.notbank.core.ParamBuilder;
@@ -35,6 +36,16 @@ public class CreateCryptoWithdrawParamBuilder implements ParamBuilder {
   public CreateCryptoWithdrawParamBuilder otp(String value) {
     this.params.put("otp", value);
     return this;
+  }
+
+  public CreateCryptoWithdrawParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public CreateCryptoWithdrawParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
   }
 
   public Map<String, Object> getParams() {

@@ -27,6 +27,16 @@ public class ResendVerificationCodeWhitelistedAddresParamBuilder implements Para
     return whitelistAddressId;
   }
 
+  public ResendVerificationCodeWhitelistedAddresParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public ResendVerificationCodeWhitelistedAddresParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
   public Map<String, Object> getParams() {
     return params;
   }

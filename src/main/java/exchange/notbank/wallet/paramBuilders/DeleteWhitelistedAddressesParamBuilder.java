@@ -28,6 +28,16 @@ public class DeleteWhitelistedAddressesParamBuilder implements ParamBuilder {
     return whitelistAddressId;
   }
 
+  public DeleteWhitelistedAddressesParamBuilder userId(UUID userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
+  public DeleteWhitelistedAddressesParamBuilder userId(String userId) {
+      this.params.put("user_id", userId);
+      return this;
+  }
+
   public Map<String, Object> getParams() {
     return params;
   }
