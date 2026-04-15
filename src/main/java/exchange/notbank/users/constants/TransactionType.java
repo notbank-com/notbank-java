@@ -18,5 +18,7 @@ public enum TransactionType {
   @Json(name = "MarginAcquisition")
   MARGIN_ACQUISITION,
   @Json(name = "MarginRelinquish")
-  MARGIN_RELINQUISH;
+  MARGIN_RELINQUISH,
+  @Json(name = "Distribution")
+  DISTRIBUTION;
 }
