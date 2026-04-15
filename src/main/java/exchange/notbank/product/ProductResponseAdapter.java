@@ -9,7 +9,6 @@ import com.squareup.moshi.Types;
 
 import exchange.notbank.core.ErrorHandler;
 import exchange.notbank.core.NotbankException;
-import exchange.notbank.core.responses.DataResponse;
 import exchange.notbank.product.responses.Product;
 import exchange.notbank.product.responses.VerificationLevelConfig;
 

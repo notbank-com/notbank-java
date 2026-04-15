@@ -39,12 +39,6 @@ public class ProductService {
     }
   }
 
-  private <T> CompletableFuture<T> requestGet(String endpoint, ParamBuilder paramBuilder,
-      Function<String, Either<NotbankException, T>> deserializeFn) {
-    return getNotbankConnection.get()
-        .thenCompose(connection -> connection.requestGet(EndpointCategory.NB, endpoint, paramBuilder, deserializeFn));
-  }
-
   private <T> CompletableFuture<T> requestPost(String endpoint, ParamBuilder paramBuilder,
       Function<String, Either<NotbankException, T>> deserializeFn) {
     return getNotbankConnection.get()

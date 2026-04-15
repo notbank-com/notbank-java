@@ -28,5 +28,23 @@ public enum ReferenceType {
   @Json(name = "MarginRelinquish")
   MARGIN_RELINQUISH,
   @Json(name = "MarginQuoteHold")
-  MARGIN_QUOTEHOLD;
+  MARGIN_QUOTEHOLD,
+  @Json(name = "MarginInterestNetting")
+  MARGIN_INTEREST_NETTING,
+  @Json(name = "MarginOperatorTransferToMarginAccount")
+  MARGIN_OPERATOR_TRANSFER_TO_MARGIN_ACCOUNT,
+  @Json(name = "MarginOperatorTransferToAssetAccount")
+  MARGIN_OPERATOR_TRANSFER_TO_ASSET_ACCOUNT,
+  @Json(name = "MarginUserTransfer")
+  MARGIN_USER_TRANSFER,
+  @Json(name = "MarginPositionReverseTrade")
+  MARGIN_POSITION_REVERSE_TRADE,
+  @Json(name = "AffiliateRebate")
+  AFFILIATE_REBATE,
+  @Json(name = "DistributionEntry")
+  DISTRIBUTION_ENTRY,
+  @Json(name = "TransferHold")
+  TRANSFER_HOLD,
+  @Json(name = "AirDrop")
+  AIR_DROP;
 }
