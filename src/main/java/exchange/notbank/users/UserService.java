@@ -12,7 +12,10 @@ import exchange.notbank.core.ParamBuilder;
 import exchange.notbank.users.constants.Endpoints;
 import exchange.notbank.users.paramBuilders.GetUserAccountsParamBuilder;
 import exchange.notbank.users.paramBuilders.GetUserDevicesParamBuilder;
+import exchange.notbank.users.paramBuilders.RegisterBasicUserParamBuilder;
+import exchange.notbank.users.paramBuilders.RegisterAdvancedUserParamBuilder;
 import exchange.notbank.users.responses.Device;
+import exchange.notbank.users.responses.RegisterUserData;
 import io.vavr.control.Either;
 
 public class UserService {
@@ -32,6 +35,13 @@ public class UserService {
             connection -> connection.requestPost(EndpointCategory.AP, endpoint, paramBuilder, deserializeFn));
   }
 
+  private <T> CompletableFuture<T> requestPostNb(String endpoint, ParamBuilder paramBuilder,
+      Function<String, Either<NotbankException, T>> deserializeFn) {
+    return getNotbankConnection.get()
+        .thenCompose(
+            connection -> connection.requestPost(EndpointCategory.NB, endpoint, paramBuilder, deserializeFn));
+  }
+
   /**
    * https://apidoc.notbank.exchange/#getuseraccounts
    */
@@ -44,6 +54,20 @@ public class UserService {
    */
   public CompletableFuture<List<Device>> getUserDevices(GetUserDevicesParamBuilder paramBuilder) {
     return requestPost(Endpoints.GET_USER_DEVICES, paramBuilder, responseAdapter::toDeviceList);
+  }
+
+  /**
+   * https://docs.notbank.exchange/#register-a-basic-user
+   */
+  public CompletableFuture<RegisterUserData> registerBasicUser(RegisterBasicUserParamBuilder paramBuilder) {
+    return requestPostNb(Endpoints.REGISTER_USER, paramBuilder, responseAdapter::toRegisterUserData);
+  }
+
+  /**
+   * https://docs.notbank.exchange/#register-an-advanced-user
+   */
+  public CompletableFuture<RegisterUserData> registerAdvancedUser(RegisterAdvancedUserParamBuilder paramBuilder) {
+    return requestPostNb(Endpoints.REGISTER_USER, paramBuilder, responseAdapter::toRegisterUserData);
   }
 
 }
