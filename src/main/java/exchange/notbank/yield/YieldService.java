@@ -60,7 +60,7 @@ public class YieldService {
    */
   public CompletableFuture<List<YieldProduct>> getYieldProducts(
       GetYieldProductsParamBuilder paramBuilder) {
-        return requestGet(
+        return requestPost(
             Endpoints.GET_YIELD_PRODUCTS,
             paramBuilder,
             responseAdapter::toYieldProductList);

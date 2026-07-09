@@ -28,6 +28,7 @@ import exchange.notbank.wallet.paramBuilders.GetClientBankAccountParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetClientBankAccountsParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetDepositAddressesParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetOwnersFiatWithdrawParamBuilder;
+import exchange.notbank.wallet.paramBuilders.GetProvincesParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetTransactionsParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetWhitelistedAddressesParamBuilder;
 import exchange.notbank.wallet.paramBuilders.GetnetworksTemplatesParamBuilder;
@@ -239,4 +240,12 @@ public class WalletServiceTest {
     TestHelper.checkNoError(futureResponse);
   }
 
+
+  @Test
+  public void getProvinces() {
+    var futureResponse = client.getWalletService().getProvinces(
+      new GetProvincesParamBuilder("PE")
+    );
+    TestHelper.checkNoError(futureResponse);
+  }
 }
