@@ -21,4 +21,10 @@ public class GetVerificationStatusParamBuilderTest {
   public void omitsUserIdByDefault() {
     assertFalse(new GetVerificationStatusParamBuilder().getParams().containsKey("user_id"));
   }
+
+  @Test
+  public void omitsNullUserId() {
+    assertFalse(new GetVerificationStatusParamBuilder().userId((String) null).getParams().containsKey("user_id"));
+    assertFalse(new GetVerificationStatusParamBuilder().userId((UUID) null).getParams().containsKey("user_id"));
+  }
 }

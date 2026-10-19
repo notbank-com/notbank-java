@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import com.squareup.moshi.Moshi;
 
+import exchange.notbank.core.NotbankException;
 import exchange.notbank.verification.constants.VerificationLevel;
 import exchange.notbank.verification.constants.VerificationProcessResult;
 
@@ -67,5 +68,15 @@ public class VerificationServiceResponseAdapterTest {
     var json = "{\"status\":\"error\",\"code\":\"user_not_found\",\"message\":\"User not found\"}";
     var result = adapter.toVerificationStatus(json);
     assertTrue(result.isLeft());
+    assertEquals(NotbankException.ErrorType.RESPONSE_ERROR, result.getLeft().errorType);
+  }
+
+  @Test
+  public void returnsJsonFormatErrorOnUnknownEnumValue() {
+    var json = "{\"status\":\"success\",\"data\":{\"id\":null,\"locked\":false,\"next_level\":\"platinum\","
+        + "\"last_previous_status\":null,\"last_previous_reason\":null,\"is_business\":false,\"verification_tier\":1}}";
+    var result = adapter.toVerificationStatus(json);
+    assertTrue(result.isLeft());
+    assertEquals(NotbankException.ErrorType.JSON_FORMAT, result.getLeft().errorType);
   }
 }

@@ -17,12 +17,16 @@ public class GetVerificationStatusParamBuilder implements ParamBuilder {
   }
 
   public GetVerificationStatusParamBuilder userId(UUID userId) {
-    this.params.put("user_id", userId);
+    if (userId != null) {
+      this.params.put("user_id", userId);
+    }
     return this;
   }
 
   public GetVerificationStatusParamBuilder userId(String userId) {
-    this.params.put("user_id", userId);
+    if (userId != null) {
+      this.params.put("user_id", userId);
+    }
     return this;
   }
 

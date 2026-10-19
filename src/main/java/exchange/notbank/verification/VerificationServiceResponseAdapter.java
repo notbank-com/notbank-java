@@ -3,6 +3,7 @@ package exchange.notbank.verification;
 import java.lang.reflect.ParameterizedType;
 
 import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.JsonDataException;
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.Types;
 
@@ -30,6 +31,11 @@ public class VerificationServiceResponseAdapter {
   }
 
   Either<NotbankException, VerificationStatus> toVerificationStatus(String jsonStr) {
-    return handle(jsonStr, verificationStatusJsonAdapter).map(response -> response.data);
+    try {
+      return handle(jsonStr, verificationStatusJsonAdapter).map(response -> response.data);
+    } catch (JsonDataException e) {
+      // unknown enum values (next_level, last_previous_status) are reported as NotbankException
+      return Either.left(NotbankException.Factory.create(NotbankException.ErrorType.JSON_FORMAT, e.getMessage(), e));
+    }
   }
 }
