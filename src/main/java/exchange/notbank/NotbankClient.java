@@ -19,6 +19,7 @@ import exchange.notbank.system.SystemService;
 import exchange.notbank.trading.TradingService;
 import exchange.notbank.users.UserService;
 import exchange.notbank.wallet.WalletService;
+import exchange.notbank.verification.VerificationService;
 import exchange.notbank.yield.YieldService;
 
 public class NotbankClient {
@@ -36,12 +37,14 @@ public class NotbankClient {
   public final ReportService reportService;
   public final SubAccountService subaccountService;
   public final YieldService yieldService;
+  public final VerificationService verificationService;
 
   public NotbankClient(Supplier<NotbankConnection> connectionSupplier, AccountService accountService,
       FeeService feeService, InstrumentService instrumentService, ProductService productService,
       SubscriptionService subscriptionService, SystemService systemService, TradingService tradingService,
       UserService userService, WalletService walletService, QuoteService quoteService, ReportService reportService,
-      SubAccountService subAccountService, YieldService yieldService) {
+      SubAccountService subAccountService, YieldService yieldService,
+      VerificationService verificationService) {
     this.connectionSupplier = connectionSupplier;
     this.accountService = accountService;
     this.feeService = feeService;
@@ -56,6 +59,7 @@ public class NotbankClient {
     this.reportService = reportService;
     this.subaccountService = subAccountService;
     this.yieldService = yieldService;
+    this.verificationService = verificationService;
   }
 
   public static class Factory extends NotbankClientFactory {
@@ -133,6 +137,10 @@ public class NotbankClient {
 
   public YieldService getYieldService() {
     return yieldService;
+  }
+
+  public VerificationService getVerificationService() {
+    return verificationService;
   }
 
 }
