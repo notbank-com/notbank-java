@@ -43,6 +43,8 @@ import exchange.notbank.users.UserService;
 import exchange.notbank.users.UserServiceResponseAdapter;
 import exchange.notbank.wallet.WalletService;
 import exchange.notbank.wallet.WalletServiceResponseAdapter;
+import exchange.notbank.verification.VerificationService;
+import exchange.notbank.verification.VerificationServiceResponseAdapter;
 import exchange.notbank.yield.YieldService;
 import exchange.notbank.yield.YieldServiceResponseAdapter;
 
@@ -179,6 +181,9 @@ public class NotbankClientFactory {
     var yieldService = new YieldService(
         () -> notbankConnectionInterceptor.apply(notbankConnection),
         new YieldServiceResponseAdapter(moshi));
+    var verificationService = new VerificationService(
+        () -> notbankConnectionInterceptor.apply(notbankConnection),
+        new VerificationServiceResponseAdapter(moshi));
     return new NotbankClient(
         () -> notbankConnection,
         accountService,
@@ -193,6 +198,7 @@ public class NotbankClientFactory {
         quoteService,
         reportService,
         subaccountService,
-        yieldService);
+        yieldService,
+        verificationService);
   }
 }
